@@ -9,3 +9,15 @@ app_logout:
 homepage:
    path: /
    controller: App\Controller\HomepageController::index
+
+panel:
+   path: /panel
+   controller: App\Controller\PanelController::index
+
+panel_profile:
+   path: /panel/profile
+   controller: App\Controller\ProfileController::index
+
+panel_profile_connect:
+   path: /panel/profile/connect
+   controller: App\Controller\ProfileController::connect

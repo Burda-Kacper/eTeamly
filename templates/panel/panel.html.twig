@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %} {% block body %}
+<div class="panel-container">
+  <div class="panel-left-placeholder"></div>
+  <div class="panel-left">{% include('panel/_mainMenu.html.twig') %}</div>
+  <div class="panel-right">
+    <div class="sub-menu-container">
+      {% block topMenu %} {% endblock %}
+      <div class="sub-menu-placeholder"></div>
+    </div>
+    <div class="panel-content">{% block content %} {% endblock %}</div>
+  </div>
+</div>
+{% endblock %}

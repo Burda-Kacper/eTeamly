@@ -1,0 +1,25 @@
+.panel-container {
+  position: relative;
+  display: flex;
+  height:100vh;
+}
+.panel-left,
+.panel-left-placeholder {
+  width: 225px;
+}
+.panel-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: $dark-blue;
+  color: #fff;
+}
+.panel-right {
+  width: calc(100% - 225px);
+  height:calc(100% - 65px);
+}
+.panel-content {
+  background-color: $light-grey;
+  height:100%;
+}

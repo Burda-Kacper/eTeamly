@@ -5,3 +5,13 @@
   box-sizing: border-box;
   font-family: "Poppins";
 }
+body{
+  min-height:100vh;
+}
+@import "fontAwesome/fontawesome.scss";
+@import "fontAwesome/solid.scss";
+@import "fontAwesome/regular.scss";
+@import "fontAwesome/brands.scss";
+@import "components/variables.scss";
+@import "panel/panel.scss";
+@import "panel/menu.scss";

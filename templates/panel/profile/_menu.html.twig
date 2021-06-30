@@ -1,0 +1,31 @@
+<a
+  href="{{ path('panel_profile') }}"
+  class="
+    sub-menu-entry
+    {%
+    if
+    app.request.get('_route')
+    ==
+    'panel_profile'
+    %}active{%
+    endif
+    %}
+  "
+>
+  Profil
+</a>
+<a
+  href="{{ path('panel_profile_connect') }}"
+  class="
+    sub-menu-entry
+    {%
+    if
+    app.request.get('_route')
+    ==
+    'panel_profile_connect'
+    %}active{%
+    endif
+    %}
+  "
+  >Konto LoL</a
+>

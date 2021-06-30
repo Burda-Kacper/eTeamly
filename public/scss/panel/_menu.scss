@@ -1,0 +1,66 @@
+.main-menu-row {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+  font-size: 16px;
+  font-weight: 400;
+  user-select: none;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  &.logo {
+    background-color: $dark-blue-darker;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: default;
+  }
+
+  &:hover:not(.logo):not(.active) {
+    background-color: $dark-blue-hover;
+  }
+  &.active {
+    background-color: $dark-blue-active;
+  }
+  i {
+    font-size: 18px;
+    margin-right: 40px;
+    width: 0;
+  }
+}
+.sub-menu-container {
+  width: 100%;
+  min-height: 65px;
+  color: #000;
+  display: flex;
+}
+.sub-menu-entry {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 20px;
+  min-width:125px;
+  justify-content: center;
+  user-select: none;
+  height: 65px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: $blue;
+  border-bottom: 1px solid $grey;
+  &:hover {
+    background-color: $blue-hover;
+    border-color: $blue-hover;
+    color: #fff;
+  }
+  &.active {
+    background-color: $blue-active;
+    color: #fff;
+    border-color: $blue-active;
+  }
+}
+.sub-menu-placeholder {
+  flex-grow: 1;
+  border-bottom: 1px solid $grey;
+}

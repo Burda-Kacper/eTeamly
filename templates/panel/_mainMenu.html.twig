@@ -1,0 +1,22 @@
+<div class="main-menu-row logo">eTeamly</div>
+<a href="#" class="main-menu-row"><i class="fas fa-home"></i>Start</a>
+<a href="#" class="main-menu-row"><i class="fas fa-users"></i>Drużyny</a>
+<a href="#" class="main-menu-row"
+  ><i class="fas fa-calendar-day"></i>Kalendarz</a
+>
+<a
+  href="{{ path('panel_profile') }}"
+  class="
+    main-menu-row
+    {%
+    if
+    app.request.get('_route')
+    starts
+    with
+    'panel_profile'
+    %}active{%
+    endif
+    %}
+  "
+  ><i class="fas fa-user"></i>Konto</a
+>
