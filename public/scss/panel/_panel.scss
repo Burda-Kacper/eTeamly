@@ -1,7 +1,7 @@
 .panel-container {
   position: relative;
   display: flex;
-  height:100vh;
+  height: 100vh;
 }
 .panel-left,
 .panel-left-placeholder {
@@ -17,9 +17,59 @@
 }
 .panel-right {
   width: calc(100% - 225px);
-  height:calc(100% - 65px);
+  height: 100%;
 }
 .panel-content {
   background-color: $light-grey;
-  height:100%;
+  min-height: calc(100% - 65px);
+  padding: 25px;
+}
+
+.panel-emphasis {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border:3px solid $yellow-background;
+  background-color: #fff;
+  i {
+    width: 45px;
+    height: 45px;
+    color: $yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+  }
+  > div {
+    width: calc(100% - 60px);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: $yellow;
+  }
+}
+.panel-header {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.center {
+  text-align: center;
+}
+.bold-blue {
+  font-weight: 600;
+  color: $blue;
+}
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+.panel-text {
+  font-size: 14px;
 }

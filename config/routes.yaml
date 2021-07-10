@@ -18,6 +18,14 @@ panel_profile:
    path: /panel/profile
    controller: App\Controller\ProfileController::index
 
-panel_profile_connect:
-   path: /panel/profile/connect
+panel_profile_league:
+   path: /panel/profile/league
    controller: App\Controller\ProfileController::connect
+
+panel_profile_league_generate_ikp:
+   path: /panel/profile/league/generateIKP
+   controller: App\Controller\ProfileController::generateIKP
+
+panel_profile_league_verify_summoner:
+   path: /panel/profile/league/verifySummoner
+   controller: App\Controller\ProfileController::verifySummoner

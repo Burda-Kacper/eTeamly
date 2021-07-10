@@ -1,2 +1,128 @@
 {% extends 'panel/panel.html.twig' %} {% block topMenu %} {%
-include('panel/profile/_menu.html.twig') %} {% endblock %}
+include('panel/profile/_menu.html.twig') %} {% endblock %} {% block content %}
+{% set verified = app.user.lolprofiles.0.verified %} {% if verified %}
+<div class="row row-1-1">
+  <div class="tile connect-paired">
+    <i class="fas fa-check-square"></i>
+    <div>
+      <p class="panel-header">Twoje konto jest zweryfikowane!</p>
+      <p class="panel-text">
+        Twoja nazwa przywoływacza:
+        <span class="bold-blue">{{ app.user.lolprofiles.0.summonerName }}</span>
+      </p>
+      <p class="panel-text">
+        Posiadasz dostęp do pełnej funkcjonalności eTeamly.
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %} {% if not verified %}
+<div class="row row-1-1">
+  <div class="panel-emphasis">
+    <i class="far fa-question-circle"></i>
+    <div>
+      Zweryfikuj swoje konto League of Legends na eTeamly aby odblokować pełną
+      funkcjonalność.<br />Nie musisz się o nic martwić - weryfikacja jest
+      całkowicie bezpieczna i zatwierdzona przez Riot Games.
+    </div>
+  </div>
+</div>
+<div class="row row-1-4">
+  <div class="tile">
+    <p class="panel-header">Krok 1.</p>
+    <p class="panel-text mb-15">
+      Podaj swoją nazwę przywoływacza. Na obecną chwilę obsługujemy jedynie
+      region EUNE - planujemy jednak rozszerzenie naszej działaności na
+      pozostałe serwery!
+    </p>
+    <p class="panel-text center mb-5">Twoja nazwa przywoływacza:</p>
+    <input
+      class="connect-input small center"
+      placeholder="Podaj nazwę przywoływacza"
+      id="connect-summoner"
+    />
+  </div>
+  <div class="tile">
+    <p class="panel-header">Krok 2.</p>
+    <p class="panel-text mb-15">
+      Kliknij przycisk poniżej, aby wygenerować swój Indywidualny Kod Połączenia
+      (<span class="bold-blue">IKP</span>). <b>Nie udostępniaj go nikomu!</b> -
+      jeżeli ktoś go pozna może się pod Ciebie podszyć!
+    </p>
+    <p class="panel-text center mb-5">Generacja kodu:</p>
+    <button class="connect-button mb-15" id="connect-generate-IKP">
+      Wygeneruj IKP
+    </button>
+    <p class="panel-text center mb-5">
+      Twój <span class="bold-blue">IKP</span>:
+    </p>
+    <input
+      class="connect-input center"
+      readonly="readonly"
+      value="-"
+      id="connect-IKP"
+    />
+  </div>
+  <div class="tile">
+    <p class="panel-header">Krok 3.</p>
+    <p class="panel-text">
+      Wprowadź <span class="bold-blue">IKP</span> w kliencie League of Legends.
+      Aby to zrobić, otwórz ustawienia klienta (zębatka w górnym prawym rogu) a
+      następnie przejdź do zakładki "Weryfikacja". Tutaj wklej swój
+      <span class="bold-blue">IKP</span> i zapisz zmiany.
+    </p>
+  </div>
+  <div class="tile">
+    <p class="panel-header">Krok 4.</p>
+    <p class="panel-text mb-15">
+      Kliknij przycisk poniżej aby dokończyć weryfikację konta. Gdy już raz to
+      zrobisz, nie będziesz musiał robić tego ponownie.
+    </p>
+    <p class="panel-text center mb-5">To już ostatni krok:</p>
+    <button class="connect-button" id="connect-verify-accounts">
+      Zweryfikuj konto
+    </button>
+  </div>
+</div>
+{% endif %} {% endblock %} {% block javascripts %} {% set verified =
+app.user.lolprofiles.0.verified %} {% if not verified %}
+<script>
+  $("#connect-generate-IKP").on("click", function () {
+    $.ajax({
+      method: "POST",
+      url: "{{ path('panel_profile_league_generate_ikp') }}",
+      dataType: "JSON",
+    }).done(function (data) {
+      if (data.success) {
+        $("#connect-IKP").val(data.data);
+      } else {
+        // ETODO: alert with not logged in
+      }
+    });
+  });
+</script>
+<script>
+  $("#connect-verify-accounts").on("click", function () {
+    const summoner = $("#connect-summoner").val();
+    if (summoner) {
+      $.ajax({
+        method: "POST",
+        url: "{{ path('panel_profile_league_verify_summoner') }}",
+        dataType: "JSON",
+        data: {
+          summoner: $("#connect-summoner").val(),
+        },
+      }).done(function (data) {
+        if (data.success) {
+          location.reload();
+        } else {
+          // ETODO: alert with not found summoner
+        }
+        console.log(data.data);
+      });
+    } else {
+      // ETODO: alert with enter summoner first
+    }
+  });
+</script>
+{% endif %} {% endblock %}

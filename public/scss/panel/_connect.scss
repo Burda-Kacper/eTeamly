@@ -1,0 +1,60 @@
+.connect-button {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  height: 42px;
+  font-weight: 600;
+  font-size: 16px;
+  border: 0;
+  background-color: $blue;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    background-color: $blue-hover;
+  }
+}
+.connect-input {
+  width: 200px;
+  height: 42px;
+  margin: 0 auto;
+  display: block;
+  outline: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: $blue;
+  &.small {
+    color: #000;
+    text-transform: unset;
+    font-weight: 600;
+    font-size: 12px;
+  }
+}
+.connect-status {
+  font-size: 24px;
+  font-weight: 700;
+  &.connect-status-0 {
+    color: $red;
+  }
+  &.connect-status-1 {
+    color: $green;
+  }
+}
+.connect-paired {
+  display: flex;
+  justify-content: space-between;
+  i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    height: 135px;
+    padding: 25px;
+    font-size: 100px;
+    color: $green;
+  }
+  div {
+    width: calc(100% - 135px);
+    padding: 25px 25px 25px 10px;
+  }
+}

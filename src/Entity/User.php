@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -34,6 +36,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LoLProfile::class, mappedBy="owner", orphanRemoval=true)
+     */
+    private $loLProfiles;
+
+
+    public function __construct()
+    {
+        $this->loLProfiles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,5 +130,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|LoLProfile[]
+     */
+    public function getLoLProfiles(): Collection
+    {
+        return $this->loLProfiles;
+    }
+
+    public function addLoLProfile(LoLProfile $loLProfile): self
+    {
+        if (!$this->loLProfiles->contains($loLProfile)) {
+            $this->loLProfiles[] = $loLProfile;
+            $loLProfile->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoLProfile(LoLProfile $loLProfile): self
+    {
+        if ($this->loLProfiles->removeElement($loLProfile)) {
+            // set the owning side to null (unless already changed)
+            if ($loLProfile->getOwner() === $this) {
+                $loLProfile->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 }
